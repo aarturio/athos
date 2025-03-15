@@ -10,7 +10,7 @@ async function fetchNewsData() {
 export default async function TickerPage() {
   const newsData = await fetchNewsData();
 
-  // Aggregate news by date and keep one article’s details per day for tooltip
+  // Aggregate news by date and keep one article's details per day for tooltip
   const dateMap = newsData.reduce((acc, item) => {
     const date = item.published_utc.split("T")[0]; // Extract YYYY-MM-DD
     if (!acc[date]) {
@@ -35,9 +35,13 @@ export default async function TickerPage() {
   );
 
   return (
-    <div className="p-4 max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Financial News Timeline</h1>
-      <Chart data={chartData} />
+    <div className="px-4 py-6 sm:px-6 lg:px-8 w-full max-w-[95%] sm:max-w-3xl lg:max-w-5xl mx-auto">
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-gray-800 dark:text-gray-100 text-center sm:text-left">
+        Financial News Timeline
+      </h1>
+      <div className="mt-6 w-full overflow-hidden">
+        <Chart data={chartData} />
+      </div>
     </div>
   );
 }
